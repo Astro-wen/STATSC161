@@ -19,6 +19,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import numpy as np
 import pandas as pd
+import pyarrow.compute as pc
+import pyarrow.parquet as pq
 import requests
 
 from common import PROCESSED, RAW, auth, fetch, write_manifest
@@ -26,29 +28,41 @@ from common import PROCESSED, RAW, auth, fetch, write_manifest
 DEPTH_BAND = 0.02  # same 2-cent band as bid_depth_2c / ask_depth_2c
 
 
-def summarize(path):
-    snap = pd.read_parquet(path)
-    rows = []
-    for ts, asset, market, bids, asks in snap[["ts_ms", "asset_id", "market", "bids", "asks"]].itertuples(index=False):
-        bb = ba = np.nan
-        bd = ad = 0.0
-        nb, na = len(bids), len(asks)
-        if nb:
-            bp = np.array([lvl["price"] for lvl in bids], dtype=float)
-            bs = np.array([lvl["size"] for lvl in bids], dtype=float)
-            bb = bp.max()
-            m = bp >= bb - DEPTH_BAND - 1e-9
-            bd = float((bp[m] * bs[m]).sum())
-        if na:
-            ap = np.array([lvl["price"] for lvl in asks], dtype=float)
-            sz = np.array([lvl["size"] for lvl in asks], dtype=float)
-            ba = ap.min()
-            m = ap <= ba + DEPTH_BAND + 1e-9
-            ad = float((ap[m] * sz[m]).sum())
-        rows.append((ts, asset, market, bb, ba, nb, na, bd, ad))
+def _side(col, n, best_fn):
+    """Best price, level count and USD depth within DEPTH_BAND of the best, per row."""
+    counts = pc.list_value_length(col).fill_null(0).to_numpy(zero_copy_only=False)
+    flat = pc.list_flatten(col)
+    best = np.full(n, np.nan)
+    depth = np.zeros(n)
+    if len(flat):
+        lv = pd.DataFrame({
+            "row": pc.list_parent_indices(col).to_numpy(),
+            "price": flat.field("price").to_numpy(zero_copy_only=False).astype(float),
+            "size": flat.field("size").to_numpy(zero_copy_only=False).astype(float),
+        })
+        b = lv.groupby("row")["price"].agg(best_fn)
+        best[b.index.to_numpy()] = b.to_numpy()
+        lv["best"] = best[lv["row"].to_numpy()]
+        near = (lv["price"] >= lv["best"] - DEPTH_BAND - 1e-9) if best_fn == "max" else (lv["price"] <= lv["best"] + DEPTH_BAND + 1e-9)
+        lv = lv[near]
+        d = (lv["price"] * lv["size"]).groupby(lv["row"]).sum()
+        depth[d.index.to_numpy()] = d.to_numpy()
+    return best, counts, depth
 
-    df = pd.DataFrame(rows, columns=["ts_ms", "asset_id", "market", "best_bid", "best_ask",
-                                     "n_bid_levels", "n_ask_levels", "bid_depth_2c", "ask_depth_2c"])
+
+def summarize(path):
+    t = pq.read_table(path)
+    n = t.num_rows
+    bb, nb, bd = _side(t.column("bids").combine_chunks(), n, "max")
+    ba, na, ad = _side(t.column("asks").combine_chunks(), n, "min")
+    df = pd.DataFrame({
+        "ts_ms": t.column("ts_ms").to_numpy(),
+        "asset_id": t.column("asset_id").to_pandas(),
+        "market": t.column("market").to_pandas(),
+        "best_bid": bb, "best_ask": ba,
+        "n_bid_levels": nb, "n_ask_levels": na,
+        "bid_depth_2c": bd, "ask_depth_2c": ad,
+    })
     df["hour"] = pd.to_datetime(df["ts_ms"], unit="ms", utc=True)
     df["mid"] = (df["best_bid"] + df["best_ask"]) / 2
     df["spread"] = df["best_ask"] - df["best_bid"]
