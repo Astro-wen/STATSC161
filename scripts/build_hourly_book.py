@@ -1,5 +1,6 @@
 """Turn the hourly order-book snapshots into one small table:
 one row per asset per hour with best bid/ask, mid, spread and depth near the top.
+Assets whose book is empty in that hour are left out.
 
     python scripts/build_hourly_book.py --start 2026-06-01 --end 2026-06-16
     python scripts/build_hourly_book.py --start 2026-05-30 --end 2026-10-26 --keep-raw
@@ -71,6 +72,16 @@ def summarize(path):
     return df
 
 
+def compact(df):
+    """Drop assets with an empty book, sort, and dictionary-encode the long ids.
+    This takes a busy day from ~180 MB to a few MB."""
+    df = df[(df["n_bid_levels"] + df["n_ask_levels"]) > 0].drop(columns=["ts_ms"])
+    df = df.sort_values(["market", "asset_id", "hour"]).reset_index(drop=True)
+    for c in ("market", "asset_id"):
+        df[c] = df[c].astype("category")
+    return df
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--start", required=True, help="first day, YYYY-MM-DD")
@@ -115,7 +126,7 @@ def main():
         frames = [f for _, f in results if f is not None]
         write_manifest(rows, out_dir / "_manifest.json")
         if frames:
-            pd.concat(frames, ignore_index=True).to_parquet(out, index=False)
+            compact(pd.concat(frames, ignore_index=True)).to_parquet(out, index=False, compression="zstd")
         print(f"{day}: {len(frames)}/24 hours")
         day += dt.timedelta(1)
 
