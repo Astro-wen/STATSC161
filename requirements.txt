@@ -1,0 +1,11 @@
+pandas
+numpy
+pyarrow
+duckdb
+requests
+python-dotenv
+sqlalchemy
+psycopg2-binary
+scikit-learn
+matplotlib
+jupyter

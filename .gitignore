@@ -1,0 +1,21 @@
+# credentials
+.env
+
+# data stays local (course data, not for a public repo)
+data/**
+!data/README.md
+
+# course handouts
+references/
+
+# python / notebooks
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# os / editors
+.DS_Store
+.vscode/
+.idea/
