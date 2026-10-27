@@ -26,6 +26,17 @@ python scripts/build_hourly_book.py --start 2026-05-30 --end 2026-10-26   # hour
 
 See `data/README.md` for the folder layout and how the tables join.
 
+## Midterm: market calibration
+
+```
+python scripts/fetch_event_tags.py --since 2026-05-30   # category tags from Polymarket's public API
+python scripts/build_market_sample.py                   # needs the raw wallet trades
+python scripts/make_market_figures.py
+```
+
+Analysis is in `notebooks/01_market_calibration.ipynb`, figures in `reports/figures/`.
+`data/processed/market_sample.parquet` is committed, so the notebook runs without the raw trades.
+
 ## Layout
 
 ```

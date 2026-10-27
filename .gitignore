@@ -24,3 +24,6 @@ venv/
 .DS_Store
 .vscode/
 .idea/
+
+# intermediate files (sample_trades is >100 MB)
+data/interim/
