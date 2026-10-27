@@ -1,9 +1,14 @@
 # credentials
 .env
 
-# data stays local (course data, not for a public repo)
-data/**
-!data/README.md
+# data: the repo is private, so the smaller tables are committed.
+# raw wallet trades (3.1 GB) and raw book snapshots stay local.
+data/raw/wallet_trades/
+data/raw/book_snapshots/
+data/raw/catalog/markets.parquet
+data/raw/catalog/_*_parts/
+*.part
+*.tmp
 
 # course handouts
 references/

@@ -1,11 +1,12 @@
 # data
 
-Nothing in here is committed. Run the scripts in `scripts/` to fill it.
+The catalog, the hourly book and the two lecture CSVs are committed (the repo is private).
+The raw wallet trades are too big for GitHub; run `scripts/download_wallet_trades.py` or ask Aaron for a copy.
 
 ```
 data/
   raw/
-    catalog/            markets, events, resolutions (download_catalog.py)
+    catalog/            events.parquet, resolutions.parquet, markets/ (split in 6 parts, read with pd.read_parquet('data/raw/catalog/markets'))
     wallet_trades/      one parquet per day, every fill with a pseudonymous wallet (download_wallet_trades.py)
     book_snapshots/     only if build_hourly_book.py is run with --keep-raw
   processed/
