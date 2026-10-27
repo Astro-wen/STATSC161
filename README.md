@@ -44,5 +44,5 @@ scripts/     download and build the data
 src/         shared helpers
 notebooks/   analysis
 reports/     midterm and final write-ups
-data/        local only
+data/        catalog, hourly book, samples (raw trades stay local)
 ```
