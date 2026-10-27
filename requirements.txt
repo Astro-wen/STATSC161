@@ -9,3 +9,6 @@ psycopg2-binary
 scikit-learn
 matplotlib
 jupyter
+statsmodels
+scipy
+pytz
