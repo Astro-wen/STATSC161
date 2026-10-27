@@ -6,12 +6,13 @@ The raw wallet trades are too big for GitHub; run `scripts/download_wallet_trade
 ```
 data/
   raw/
-    catalog/            events.parquet, resolutions.parquet, markets/ (split in 6 parts, read with pd.read_parquet('data/raw/catalog/markets'))
+    catalog/            event_tags.parquet (Polymarket category tags), events.parquet, resolutions.parquet, markets/ (split in 6 parts, read with pd.read_parquet('data/raw/catalog/markets'))
     wallet_trades/      one parquet per day, every fill with a pseudonymous wallet (download_wallet_trades.py)
     book_snapshots/     only if build_hourly_book.py is run with --keep-raw
   processed/
     hourly_book/        best bid/ask, mid, spread, 2c depth per asset per hour (build_hourly_book.py)
                         assets with an empty book that hour are dropped
+  processed/market_sample.parquet   market x horizon sample for the market study (scripts/build_market_sample.py)
   external/
     wallet_features.csv the 55,952-wallet table from the Week 3 lecture package
     wallet_scores.csv   same wallets with the lecture's Isolation Forest score

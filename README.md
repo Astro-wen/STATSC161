@@ -28,20 +28,19 @@ See `data/README.md` for the folder layout and how the tables join.
 
 ## Midterm: market calibration
 
-```
-python scripts/fetch_event_tags.py --since 2026-05-30   # category tags from Polymarket's public API
-python scripts/build_market_sample.py                   # needs the raw wallet trades
-python scripts/make_market_figures.py
-```
+Where things stand and who does what: `AGENTS.md`. Full write-up: `reports/midterm/market_writeup.md`.
+Slide script and Q&A: `reports/midterm/slide_script.md`.
 
-Analysis is in `notebooks/01_market_calibration.ipynb`, figures in `reports/figures/`.
-`data/processed/market_sample.parquet` is committed, so the notebook runs without the raw trades.
+```
+make market            # tables, figures and executed notebook from the committed sample
+make market-from-raw   # also rebuilds the sample from raw trades
+```
 
 ## Layout
 
 ```
 scripts/     download and build the data
-src/         shared helpers
+src/         shared code (market_analysis.py has all analysis logic)
 notebooks/   analysis
 reports/     midterm and final write-ups
 data/        catalog, hourly book, samples (raw trades stay local)
