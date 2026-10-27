@@ -1,0 +1,5 @@
+comparison,mae_reduction,ci_low,ci_high,percent_reduction
+Mean baseline minus Gradient boosting,0.05405863367,0.05147595958,0.05660840584,24.41444374
+Median baseline minus Gradient boosting,0.04812053462,0.04545946841,0.05083751721,22.33151684
+Linear regression minus Gradient boosting,0.03044287601,0.02860058445,0.03227210156,15.39035109
+Activity only boosting minus Gradient boosting,0.0323435899,0.03044230988,0.03421665781,16.19562989

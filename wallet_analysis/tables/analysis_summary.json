@@ -1,0 +1,519 @@
+{
+  "audit": {
+    "rows": 55952,
+    "original_column_count": 11,
+    "loaded_column_count": 8,
+    "unique_wallets": 55952,
+    "missing_selected_values": 0,
+    "nonfinite_selected_numeric_values": 0,
+    "duplicate_wallets": 0,
+    "excluded_rows": 0,
+    "train_rows": 44761,
+    "test_rows": 11191,
+    "train_test_overlap": 0,
+    "flag_loaded": false,
+    "single_market_wallets": 3834,
+    "zero_span_wallets": 1184,
+    "source_sha256": "0a44686df51dc86a6f569e2f85867e6607f33bedffa521831b4767cbb8135c8a",
+    "source": "/Users/jiahongchen/Documents/UCLA/STATS C161/midterm/wallet_analysis/data/wallet_features.csv",
+    "features": [
+      "trade_count",
+      "unique_markets",
+      "wallet_age_days",
+      "concentration",
+      "total_notional",
+      "max_single_buy"
+    ],
+    "target": "avg_buy_price",
+    "random_seed": 42,
+    "train_target_mean": 0.6684568363307344,
+    "train_target_median": 0.732177,
+    "target_min": 0.001,
+    "target_max": 0.999
+  },
+  "model_selection": {
+    "Gradient boosting": {
+      "best_parameters": {
+        "model__l2_regularization": 1.0,
+        "model__max_leaf_nodes": 31
+      },
+      "best_cv_mae": 0.16878123607806178,
+      "candidates": 6
+    },
+    "Activity only boosting": {
+      "best_parameters": {
+        "model__l2_regularization": 1.0,
+        "model__max_leaf_nodes": 31
+      },
+      "best_cv_mae": 0.19987814594455566,
+      "candidates": 6
+    }
+  },
+  "metrics": [
+    {
+      "model": "Mean baseline",
+      "MAE": 0.22142070587831436,
+      "RMSE": 0.271748153883329,
+      "R2": -0.00018095076863522408,
+      "CV_MAE": 0.22223193606582506,
+      "CV_MAE_SD": 0.0005064512612655484,
+      "train_MAE": 0.22222404742630056,
+      "train_R2": 0.0,
+      "outside_0_1": 0,
+      "MAE_CI_low": 0.21838753962189278,
+      "MAE_CI_high": 0.22442174163822518,
+      "MAE_cents": 22.142070587831437
+    },
+    {
+      "model": "Median baseline",
+      "MAE": 0.21548260682691445,
+      "RMSE": 0.278283133500679,
+      "R2": -0.04886391405985746,
+      "CV_MAE": 0.21686426537530618,
+      "CV_MAE_SD": 0.0010616916608609422,
+      "train_MAE": 0.21685670615044345,
+      "train_R2": -0.054433716935213816,
+      "outside_0_1": 0,
+      "MAE_CI_low": 0.21212342032436776,
+      "MAE_CI_high": 0.21894823770663924,
+      "MAE_cents": 21.548260682691446
+    },
+    {
+      "model": "Linear regression",
+      "MAE": 0.1978049482199061,
+      "RMSE": 0.24356298740015003,
+      "R2": 0.196533158494836,
+      "CV_MAE": 0.1986929493620438,
+      "CV_MAE_SD": 0.001661905168329758,
+      "train_MAE": 0.19865828821597326,
+      "train_R2": 0.19256895849738964,
+      "outside_0_1": 22,
+      "MAE_CI_low": 0.1952595099058246,
+      "MAE_CI_high": 0.2004053933772154,
+      "MAE_cents": 19.78049482199061
+    },
+    {
+      "model": "Activity only linear",
+      "MAE": 0.2166856472249653,
+      "RMSE": 0.2646045498217013,
+      "R2": 0.0517125803839662,
+      "CV_MAE": 0.2175909965108745,
+      "CV_MAE_SD": 0.0009340696892234529,
+      "train_MAE": 0.21756534453341983,
+      "train_R2": 0.050334551578458675,
+      "outside_0_1": 0,
+      "MAE_CI_low": 0.21381768760154676,
+      "MAE_CI_high": 0.2197109718120086,
+      "MAE_cents": 21.66856472249653
+    },
+    {
+      "model": "Gradient boosting",
+      "MAE": 0.16736207220595092,
+      "RMSE": 0.2160698286847901,
+      "R2": 0.36768478920077907,
+      "CV_MAE": 0.16878123607806178,
+      "CV_MAE_SD": 0.0009061869859728841,
+      "train_MAE": 0.16038966778968541,
+      "train_R2": 0.4235480021897374,
+      "outside_0_1": 17,
+      "MAE_CI_low": 0.16489147608040539,
+      "MAE_CI_high": 0.16991668821026404,
+      "MAE_cents": 16.73620722059509
+    },
+    {
+      "model": "Activity only boosting",
+      "MAE": 0.19970566210621812,
+      "RMSE": 0.25074692790663733,
+      "R2": 0.14843732857617142,
+      "CV_MAE": 0.19987814594455566,
+      "CV_MAE_SD": 0.0010883198070162985,
+      "train_MAE": 0.19270022829407477,
+      "train_R2": 0.21434748256020653,
+      "outside_0_1": 1,
+      "MAE_CI_low": 0.19684796501485016,
+      "MAE_CI_high": 0.20254216891275711,
+      "MAE_cents": 19.97056621062181
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison": "Mean baseline minus Gradient boosting",
+      "mae_reduction": 0.05405863367236344,
+      "ci_low": 0.05147595958136461,
+      "ci_high": 0.0566084058386381,
+      "percent_reduction": 24.414443743157566
+    },
+    {
+      "comparison": "Median baseline minus Gradient boosting",
+      "mae_reduction": 0.04812053462096352,
+      "ci_low": 0.04545946841449227,
+      "ci_high": 0.05083751721294052,
+      "percent_reduction": 22.331516835424292
+    },
+    {
+      "comparison": "Linear regression minus Gradient boosting",
+      "mae_reduction": 0.030442876013955178,
+      "ci_low": 0.02860058444628266,
+      "ci_high": 0.03227210155945636,
+      "percent_reduction": 15.390351094812281
+    },
+    {
+      "comparison": "Activity only boosting minus Gradient boosting",
+      "mae_reduction": 0.0323435899002672,
+      "ci_low": 0.030442309876241726,
+      "ci_high": 0.034216657807453074,
+      "percent_reduction": 16.19562988808224
+    }
+  ],
+  "importance": [
+    {
+      "variable": "trade_count",
+      "increase_MAE": 0.06317795405395236,
+      "shuffle_sd": 0.00101644525102236,
+      "increase_MAE_cents": 6.317795405395237,
+      "shuffle_sd_cents": 0.101644525102236
+    },
+    {
+      "variable": "total_notional",
+      "increase_MAE": 0.037638680975608005,
+      "shuffle_sd": 0.0005862074175117199,
+      "increase_MAE_cents": 3.7638680975608003,
+      "shuffle_sd_cents": 0.05862074175117199
+    },
+    {
+      "variable": "max_single_buy",
+      "increase_MAE": 0.03470578796384101,
+      "shuffle_sd": 0.0008939316985210576,
+      "increase_MAE_cents": 3.470578796384101,
+      "shuffle_sd_cents": 0.08939316985210576
+    },
+    {
+      "variable": "unique_markets",
+      "increase_MAE": 0.03435619247672041,
+      "shuffle_sd": 0.0008314114280438802,
+      "increase_MAE_cents": 3.4356192476720406,
+      "shuffle_sd_cents": 0.08314114280438802
+    },
+    {
+      "variable": "wallet_age_days",
+      "increase_MAE": 0.02161326337129619,
+      "shuffle_sd": 0.00045630331790541567,
+      "increase_MAE_cents": 2.1613263371296187,
+      "shuffle_sd_cents": 0.045630331790541566
+    },
+    {
+      "variable": "concentration",
+      "increase_MAE": 0.006971279725637684,
+      "shuffle_sd": 0.0004238648388769988,
+      "increase_MAE_cents": 0.6971279725637683,
+      "shuffle_sd_cents": 0.04238648388769988
+    }
+  ],
+  "coefficients": [
+    {
+      "variable": "trade_count",
+      "coefficient_per_training_SD": -0.18440379747256494,
+      "coefficient_cents": -18.440379747256493
+    },
+    {
+      "variable": "max_single_buy",
+      "coefficient_per_training_SD": -0.012093634209824558,
+      "coefficient_cents": -1.2093634209824558
+    },
+    {
+      "variable": "concentration",
+      "coefficient_per_training_SD": -0.0019508200310639342,
+      "coefficient_cents": -0.19508200310639343
+    },
+    {
+      "variable": "wallet_age_days",
+      "coefficient_per_training_SD": 0.0244574948924126,
+      "coefficient_cents": 2.4457494892412597
+    },
+    {
+      "variable": "unique_markets",
+      "coefficient_per_training_SD": 0.09915807822291282,
+      "coefficient_cents": 9.915807822291283
+    },
+    {
+      "variable": "total_notional",
+      "coefficient_per_training_SD": 0.17281900966247427,
+      "coefficient_cents": 17.281900966247427
+    }
+  ],
+  "diagnostics": {
+    "scaled_design_condition_number": 14.243831195028118,
+    "test_y_sd": 0.2717357117866818,
+    "boosting_error_within_5_cents": 0.19381645965508,
+    "boosting_error_within_10_cents": 0.3831650433383969,
+    "boosting_error_within_20_cents": 0.6858189616656242,
+    "OLS_outside_bounds": 22,
+    "boosting_outside_bounds": 17,
+    "bootstrap_repetitions": 2000,
+    "permutation_repetitions": 20,
+    "fit_runtime_seconds": 18.347012124955654
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.7",
+    "joblib": "1.5.2"
+  },
+  "figures": [
+    {
+      "id": "01_target_distribution",
+      "title": "Distribution of average purchase price",
+      "caption": "Training wallets only. Each wallet receives equal weight. Prices summarize shares bought across different markets.",
+      "audience": "report and slide 1"
+    },
+    {
+      "id": "02_predictor_distributions",
+      "title": "Predictor distributions after transformation",
+      "caption": "Five nonnegative predictors use log(1+x). Concentration remains on its original scale. No trimming or winsorization.",
+      "audience": "report"
+    },
+    {
+      "id": "03_rank_correlations",
+      "title": "Rank correlations",
+      "caption": "Training data only. Rank correlations summarize monotonic relationships and do not establish causation.",
+      "audience": "report"
+    },
+    {
+      "id": "04_binned_associations",
+      "title": "Observed price patterns by predictor",
+      "caption": "Training wallets in approximately equal-frequency bins. Shading shows the interquartile range of observed prices, not a confidence interval. Discrete predictors can produce fewer than ten bins.",
+      "audience": "report"
+    },
+    {
+      "id": "05_cross_validation",
+      "title": "Cross validation for gradient boosting",
+      "caption": "Five validation-fold errors per candidate. The search varies maximum leaves and L2 regularization while keeping other settings fixed. Fold variability is not a confidence interval.",
+      "audience": "report"
+    },
+    {
+      "id": "06_test_model_comparison",
+      "title": "Test prediction error",
+      "caption": "Primary models evaluated on identical test wallets. Error bars are 95% paired wallet-bootstrap intervals conditional on the fitted models. Each wallet has equal weight.",
+      "audience": "report and slide 3"
+    },
+    {
+      "id": "07_observed_vs_predicted",
+      "title": "Observed and predicted prices",
+      "caption": "Test wallets. The diagonal represents perfect prediction. Predictions remain unclipped for the primary evaluation.",
+      "audience": "report"
+    },
+    {
+      "id": "08_residual_patterns",
+      "title": "Residuals versus predicted price",
+      "caption": "Test wallets. Positive residuals mean underprediction. The bounded target naturally constrains the residual envelope.",
+      "audience": "report"
+    },
+    {
+      "id": "09_error_distributions",
+      "title": "Distributions of prediction errors",
+      "caption": "Test wallets. The cumulative curve gives the proportion of wallets predicted within a specified absolute error.",
+      "audience": "report"
+    },
+    {
+      "id": "10_calibration",
+      "title": "Binned calibration",
+      "caption": "Ten approximately equal-frequency prediction bins per model. Bars are approximate 95% intervals for observed bin means under wallet independence. Good average calibration can coexist with large individual errors.",
+      "audience": "report"
+    },
+    {
+      "id": "11_error_by_price",
+      "title": "Prediction error by observed price group",
+      "caption": "Test groups use price quintile boundaries fixed from the training set. Group membership uses the observed target and is descriptive only.",
+      "audience": "report"
+    },
+    {
+      "id": "12_permutation_importance",
+      "title": "Permutation feature importance",
+      "caption": "Gradient boosting on test wallets, 20 shuffles per predictor. Bars show mean increases in MAE and error bars show shuffle standard deviations. Correlated predictors can share or distort importance. Importance gives neither effect direction nor a causal effect.",
+      "audience": "report and slide 4"
+    },
+    {
+      "id": "13_linear_coefficients",
+      "title": "Standardized linear coefficients",
+      "caption": "Predictors use the stated log transforms followed by training-fitted standardization. Coefficients hold the other included predictors fixed. Correlation and model misspecification limit interpretation. No causal interpretation or coefficient significance tests.",
+      "audience": "report"
+    },
+    {
+      "id": "14_spending_ablation",
+      "title": "Sensitivity to monetary predictors",
+      "caption": "The four-predictor specification excludes total spending and largest purchase. Both boosting specifications use the same training-only tuning procedure. All inputs still summarize the same observed trading period.",
+      "audience": "report"
+    },
+    {
+      "id": "15_wallet_subgroups",
+      "title": "Prediction error by wallet subgroup",
+      "caption": "Test subgroups overlap. The high activity rule is at least 500 markets or 2,000 trades. Every group remains in model fitting. Small subgroups support limited precision.",
+      "audience": "report"
+    }
+  ],
+  "clipping": [
+    {
+      "model": "Linear regression",
+      "MAE": 0.1977534679069345,
+      "RMSE": 0.2435536907294562,
+      "R2": 0.19659449313491317,
+      "clipped_predictions": 22
+    },
+    {
+      "model": "Gradient boosting",
+      "MAE": 0.1672786248136586,
+      "RMSE": 0.2160468630562824,
+      "R2": 0.367819197087229,
+      "clipped_predictions": 17
+    }
+  ],
+  "subgroups": [
+    {
+      "group": "One market",
+      "model": "Mean baseline",
+      "n": 762,
+      "MAE": 0.3323492947421068,
+      "RMSE": 0.39373216797261296,
+      "R2": -0.25749068446635337
+    },
+    {
+      "group": "One market",
+      "model": "Linear regression",
+      "n": 762,
+      "MAE": 0.2639215459677302,
+      "RMSE": 0.30490502650166357,
+      "R2": 0.24589443087479135
+    },
+    {
+      "group": "One market",
+      "model": "Gradient boosting",
+      "n": 762,
+      "MAE": 0.20778080946055738,
+      "RMSE": 0.26111637612583255,
+      "R2": 0.44694133654910795
+    },
+    {
+      "group": "Multiple markets",
+      "model": "Mean baseline",
+      "n": 10429,
+      "MAE": 0.21331565412702372,
+      "RMSE": 0.26060650722335815,
+      "R2": -0.004243294950000642
+    },
+    {
+      "group": "Multiple markets",
+      "model": "Linear regression",
+      "n": 10429,
+      "MAE": 0.19297410657796132,
+      "RMSE": 0.23846321053109126,
+      "R2": 0.15916418310089475
+    },
+    {
+      "group": "Multiple markets",
+      "model": "Gradient boosting",
+      "n": 10429,
+      "MAE": 0.16440885734469768,
+      "RMSE": 0.21240429602007044,
+      "R2": 0.33289373040132086
+    },
+    {
+      "group": "Zero observed span",
+      "model": "Mean baseline",
+      "n": 247,
+      "MAE": 0.42596243163271025,
+      "RMSE": 0.4754361733703395,
+      "R2": -1.0168790199251019
+    },
+    {
+      "group": "Zero observed span",
+      "model": "Linear regression",
+      "n": 247,
+      "MAE": 0.2999774143333547,
+      "RMSE": 0.3351659863130214,
+      "R2": -0.0023405081442298137
+    },
+    {
+      "group": "Zero observed span",
+      "model": "Gradient boosting",
+      "n": 247,
+      "MAE": 0.1915414642914684,
+      "RMSE": 0.24473695100770398,
+      "R2": 0.4655654885766397
+    },
+    {
+      "group": "Positive observed span",
+      "model": "Mean baseline",
+      "n": 10944,
+      "MAE": 0.21680431276232975,
+      "RMSE": 0.2653528953298825,
+      "R2": -0.0018351154659561608
+    },
+    {
+      "group": "Positive observed span",
+      "model": "Linear regression",
+      "n": 10944,
+      "MAE": 0.19549897242220676,
+      "RMSE": 0.24109427178301682,
+      "R2": 0.1729678878260349
+    },
+    {
+      "group": "Positive observed span",
+      "model": "Gradient boosting",
+      "n": 10944,
+      "MAE": 0.1668163567595764,
+      "RMSE": 0.21537880213532679,
+      "R2": 0.3399839400174014
+    },
+    {
+      "group": "High activity rule",
+      "model": "Mean baseline",
+      "n": 50,
+      "MAE": 0.172179132374165,
+      "RMSE": 0.2229540075325898,
+      "R2": -0.014922256944057466
+    },
+    {
+      "group": "High activity rule",
+      "model": "Linear regression",
+      "n": 50,
+      "MAE": 0.172400432650842,
+      "RMSE": 0.21373109285154157,
+      "R2": 0.06730934970848634
+    },
+    {
+      "group": "High activity rule",
+      "model": "Gradient boosting",
+      "n": 50,
+      "MAE": 0.11149753882225363,
+      "RMSE": 0.1376067072006737,
+      "R2": 0.6133825822152289
+    },
+    {
+      "group": "Other activity",
+      "model": "Mean baseline",
+      "n": 11141,
+      "MAE": 0.2216416984889604,
+      "RMSE": 0.27194740537280854,
+      "R2": -0.00017045939411786115
+    },
+    {
+      "group": "Other activity",
+      "model": "Linear regression",
+      "n": 11141,
+      "MAE": 0.1979189618433199,
+      "RMSE": 0.24368863926746398,
+      "R2": 0.19689052468599177
+    },
+    {
+      "group": "Other activity",
+      "model": "Gradient boosting",
+      "n": 11141,
+      "MAE": 0.1676127881802068,
+      "RMSE": 0.21635783644461098,
+      "R2": 0.3669333377754984
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Generated caches and temporary artifact files
+.build/
+node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store
+.chart-data-*/
+.wallet_price_slides.validation.json
+*_bundle.zip

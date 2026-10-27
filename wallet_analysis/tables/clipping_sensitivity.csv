@@ -1,0 +1,3 @@
+model,MAE,RMSE,R2,clipped_predictions
+Linear regression,0.1977534679,0.2435536907,0.1965944931,22
+Gradient boosting,0.1672786248,0.2160468631,0.3678191971,17
