@@ -1,0 +1,92 @@
+[
+  {
+    "id": "01_target_distribution",
+    "title": "Distribution of average purchase price",
+    "caption": "Training wallets only. Each wallet receives equal weight. Prices summarize shares bought across different markets.",
+    "audience": "report and slide 1"
+  },
+  {
+    "id": "02_predictor_distributions",
+    "title": "Predictor distributions after transformation",
+    "caption": "Five nonnegative predictors use log(1+x). Concentration remains on its original scale. No trimming or winsorization.",
+    "audience": "report"
+  },
+  {
+    "id": "03_rank_correlations",
+    "title": "Rank correlations",
+    "caption": "Training data only. Rank correlations summarize monotonic relationships and do not establish causation.",
+    "audience": "report"
+  },
+  {
+    "id": "04_binned_associations",
+    "title": "Observed price patterns by predictor",
+    "caption": "Training wallets in approximately equal-frequency bins. Shading shows the interquartile range of observed prices, not a confidence interval. Discrete predictors can produce fewer than ten bins.",
+    "audience": "report"
+  },
+  {
+    "id": "05_cross_validation",
+    "title": "Cross validation for gradient boosting",
+    "caption": "Five validation-fold errors per candidate. The search varies maximum leaves and L2 regularization while keeping other settings fixed. Fold variability is not a confidence interval.",
+    "audience": "report"
+  },
+  {
+    "id": "06_test_model_comparison",
+    "title": "Test prediction error",
+    "caption": "Primary models evaluated on identical test wallets. Error bars are 95% paired wallet-bootstrap intervals conditional on the fitted models. Each wallet has equal weight.",
+    "audience": "report and slide 3"
+  },
+  {
+    "id": "07_observed_vs_predicted",
+    "title": "Observed and predicted prices",
+    "caption": "Test wallets. The diagonal represents perfect prediction. Predictions remain unclipped for the primary evaluation.",
+    "audience": "report"
+  },
+  {
+    "id": "08_residual_patterns",
+    "title": "Residuals versus predicted price",
+    "caption": "Test wallets. Positive residuals mean underprediction. The bounded target naturally constrains the residual envelope.",
+    "audience": "report"
+  },
+  {
+    "id": "09_error_distributions",
+    "title": "Distributions of prediction errors",
+    "caption": "Test wallets. The cumulative curve gives the proportion of wallets predicted within a specified absolute error.",
+    "audience": "report"
+  },
+  {
+    "id": "10_calibration",
+    "title": "Binned calibration",
+    "caption": "Ten approximately equal-frequency prediction bins per model. Bars are approximate 95% intervals for observed bin means under wallet independence. Good average calibration can coexist with large individual errors.",
+    "audience": "report"
+  },
+  {
+    "id": "11_error_by_price",
+    "title": "Prediction error by observed price group",
+    "caption": "Test groups use price quintile boundaries fixed from the training set. Group membership uses the observed target and is descriptive only.",
+    "audience": "report"
+  },
+  {
+    "id": "12_permutation_importance",
+    "title": "Permutation feature importance",
+    "caption": "Gradient boosting on test wallets, 20 shuffles per predictor. Bars show mean increases in MAE and error bars show shuffle standard deviations. Correlated predictors can share or distort importance. Importance gives neither effect direction nor a causal effect.",
+    "audience": "report and slide 4"
+  },
+  {
+    "id": "13_linear_coefficients",
+    "title": "Standardized linear coefficients",
+    "caption": "Predictors use the stated log transforms followed by training-fitted standardization. Coefficients hold the other included predictors fixed. Correlation and model misspecification limit interpretation. No causal interpretation or coefficient significance tests.",
+    "audience": "report"
+  },
+  {
+    "id": "14_spending_ablation",
+    "title": "Sensitivity to monetary predictors",
+    "caption": "The four-predictor specification excludes total spending and largest purchase. Both boosting specifications use the same training-only tuning procedure. All inputs still summarize the same observed trading period.",
+    "audience": "report"
+  },
+  {
+    "id": "15_wallet_subgroups",
+    "title": "Prediction error by wallet subgroup",
+    "caption": "Test subgroups overlap. The high activity rule is at least 500 markets or 2,000 trades. Every group remains in model fitting. Small subgroups support limited precision.",
+    "audience": "report"
+  }
+]

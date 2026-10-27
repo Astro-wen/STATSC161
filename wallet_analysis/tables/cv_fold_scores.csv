@@ -1,0 +1,31 @@
+model,fold,MAE
+Mean baseline,1,0.2225580022
+Mean baseline,2,0.22148372
+Mean baseline,3,0.2228003801
+Mean baseline,4,0.2220447814
+Mean baseline,5,0.2222727967
+Median baseline,1,0.2165208013
+Median baseline,2,0.2160361012
+Median baseline,3,0.2184732449
+Median baseline,4,0.2173599007
+Median baseline,5,0.2159312788
+Linear regression,1,0.2003119625
+Linear regression,2,0.1986601439
+Linear regression,3,0.196029476
+Linear regression,4,0.1998444014
+Linear regression,5,0.198618763
+Activity only linear,1,0.2181459935
+Activity only linear,2,0.2159865973
+Activity only linear,3,0.2175802934
+Activity only linear,4,0.2179697217
+Activity only linear,5,0.2182723766
+Gradient boosting,1,0.1699800462
+Gradient boosting,2,0.1684084944
+Gradient boosting,3,0.1677204557
+Gradient boosting,4,0.1694257626
+Gradient boosting,5,0.1683714215
+Activity only boosting,1,0.2005990353
+Activity only boosting,2,0.1999954219
+Activity only boosting,3,0.2008295696
+Activity only boosting,4,0.1980619928
+Activity only boosting,5,0.1999047101
