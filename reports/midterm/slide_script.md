@@ -99,7 +99,7 @@ takeaways: prices are well calibrated in all four categories; the favorite-longs
 unstable; and no model we built beats the price. Two limits: some markets close early because the event
 happened, so "24 hours before close" means slightly different things for Yes and No markets; and we have one
 test period. For the final: an insider is not someone who wins a lot, since buying at 95 cents wins a lot too.
-It is someone whose bets keep beating the price they paid. Jiahong will now show who buys the long shots.
+It is someone whose bets keep beating the price they paid. Jiahong will now show which wallets pay low prices, in other words who buys the long shots.
 
 ## Backup slides
 
