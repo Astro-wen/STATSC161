@@ -20,6 +20,10 @@ UCLA STATS C161/C261, Fall 2026. Group project on Polymarket data.
 | Aaron | Market: are prices calibrated, can a model beat them? | Done. Results, figures, 7-min script |
 | Jiahong | Wallet: how well do wallet traits predict the average price a wallet pays? (`wallet_analysis/`) | Done. Report, 4 slides, figures |
 | Leo | Literature review, slides, assembling the deck | Done |
+
+Current deck (restyled, with speaker notes and numbers checked against `reports/tables/` and
+`wallet_analysis/tables/`): `reports/midterm/Can AI Beat the Crowd (Group 2).pptx`. Speaking time in the notes:
+Leo 1:45, Aaron 7:00, Jiahong about 3:15, about 12 minutes plus Q&A.
 Updated final one: https://docs.google.com/presentation/d/1mhefGXs_uBae8s3EDT-5NbbZ7eYvhiy1ccq0EI4lYjo/edit?slide=id.p1#slide=id.p1
 Link (OG): https://docs.google.com/presentation/d/1qHHuWODgGaomUR0FSCAc41gyB_jCFLpouVySHfoDP7c/edit?usp=sharing
 Minimalist: https://docs.google.com/presentation/d/1bD7OsUIcodmiyJ6YB9EMe6NGaTwEqOoiJgNulADcvpU/edit?slide=id.p1#slide=id.p1
