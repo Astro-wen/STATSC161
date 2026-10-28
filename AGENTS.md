@@ -19,7 +19,8 @@ UCLA STATS C161/C261, Fall 2026. Group project on Polymarket data.
 | --- | --- | --- |
 | Aaron | Market: are prices calibrated, can a model beat them? | Done. Results, figures, 7-min script |
 | Jiahong | Wallet: how well do wallet traits predict the average price a wallet pays? (`wallet_analysis/`) | Done. Report, 4 slides, figures |
-| Leo | Literature review, slides, assembling the deck | In progress |
+| Leo | Literature review, slides, assembling the deck | Done |
+Link: https://docs.google.com/presentation/d/1qHHuWODgGaomUR0FSCAc41gyB_jCFLpouVySHfoDP7c/edit?usp=sharing
 
 Talk order: Aaron's market part (7 slides, 7 min) ends with "an informed trader is one who beats the
 price", then hands off to Jiahong's wallet part (4 slides). The bridge: the market part shows prices are
