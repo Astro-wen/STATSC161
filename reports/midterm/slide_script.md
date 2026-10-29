@@ -3,70 +3,70 @@
 Oct 28, 2026 · Aaron. Copy of the shared doc "Midterm market script and Q&A". If they differ, the shared doc
 is the one being edited live; numbers come from `reports/tables/key_numbers.json`.
 
-The market part runs about 6 minutes over 7 slides. The finding: Polymarket prices are well calibrated in all four
+The market part runs about 4 minutes over 7 slides. The finding: Polymarket prices are well calibrated in all four
 categories, and no model we built beats them out of sample. Figures are in `reports/figures/`; the full
 reasoning is in `reports/midterm/market_writeup.md`.
 
 ## Slide by slide
 
-Seven slides, about 6 minutes at a calm pace (about 130 words a minute). Say the bold line on each slide first;
+Seven slides, about 4 minutes at a calm pace (about 130 words a minute). Say the bold line on each slide first;
 everything after it is support. If you run long, cut slide 5 to its bold line.
 
 | Slide | Topic | Figure | Time |
 | --- | --- | --- | --- |
-| 1 (deck 4) | A price is a probability | none | 0:45 |
-| 2 (deck 5) | Data and how we built the sample | none | 0:50 |
-| 3 (deck 6) | The crowd is well calibrated | fig1, fig2 | 0:50 |
-| 4 (deck 7) | Is there a favorite-longshot bias? | fig4 | 1:00 |
-| 5 (deck 8) | Accuracy over time and by category | fig3 | 0:40 |
-| 6 (deck 9) | Can a model beat the price? | fig5 | 1:10 |
-| 7 (deck 10) | Takeaways, limits, and the final | none | 0:50 |
+| 1 (deck 4) | A price is a probability | none | 0:30 |
+| 2 (deck 5) | Data and how we built the sample | none | 0:30 |
+| 3 (deck 6) | The crowd is well calibrated | fig1, fig2 | 0:40 |
+| 4 (deck 7) | Is there a favorite-longshot bias? | fig4 | 0:40 |
+| 5 (deck 8) | Accuracy over time and by category | fig3 | 0:20 |
+| 6 (deck 9) | Can a model beat the price? | fig5 | 0:45 |
+| 7 (deck 10) | Takeaways, limits, and the final | none | 0:30 |
 
-### Slide 1. A price is a probability (0:45)
+### Slide 1. A price is a probability (0:30)
 
 On screen: "Can AI beat the crowd?" and three numbers: 7,479 resolved markets, 4 categories, Jun to Oct 2026.
 
-Say: **Thank you, Leo. As Leo mentioned, our question is whether prediction-market prices are good probabilities.** On Polymarket, a Yes share pays one dollar if the event happens. Suppose a share costs 40 cents, but you believe the chance is 60 percent. Then buying it is profitable on average. This is the formula on the slide: expected profit equals p, your belief, minus c, the price. Traders keep buying or selling until the price matches the crowd's belief. So the price can be read as a probability, and we can test it. We ask two questions. First, is the price calibrated? Second, can a model do better?
+Say: **Thank you, Leo. Our question is whether prediction-market prices are good probabilities.** A Yes share pays one dollar if the event happens. If you believe the chance is p and the price is c, your expected profit is p minus c. Traders trade until the price matches the crowd's belief, so the price works as a probability. We test two things: is it calibrated, and can a model do better?
 
-### Slide 2. Data and how we built the sample (0:50)
+### Slide 2. Data and how we built the sample (0:30)
 
 On screen: a three-step flow. Resolved markets (catalog + resolutions) → price before close (4.1M trades) →
 grade against the outcome.
 
-Say: **Here is our data.** We used all Yes/No markets in our four categories that closed between June and October 2026. This gives 7,479 markets. For each market, we recorded the price at four points before it closed: seven days, three days, one day, and six hours. The price is the last trade before each point, from 4.1 million trades. We also checked the order book. It covers only 22 percent of these markets, but where both exist, the two prices agree closely, with a correlation of 0.92.
+Say: **We used 7,479 resolved Yes/No markets in our four categories, from June to October 2026.** For each market, we took the last trade price at four points before close: seven days, three days, one day, and six hours. These prices come from 4.1 million trades.
 
-### Slide 3. The crowd is well calibrated (0:50)
+### Slide 3. The crowd is well calibrated (0:40)
 
 On screen: fig1 (calibration curve, 24h), then fig2 (one panel per category) as a build.
 
-Say: **This figure shows our main result.** We group markets by their price one day before close. Then we check how often each group actually happened. If prices are calibrated, the points lie on the diagonal, and they do. When the market says 30 percent, the event happens about 30 percent of the time. The same holds in all four categories, shown on the right. The shaded band is a 95 percent interval. We resample whole events, not single markets, because markets in one event are linked. For example, only one film can win Best Picture.
+Say: **This is our main result.** We group markets by their price one day before close and check how often they happened. The points lie on the diagonal: when the market says 30 percent, it happens about 30 percent of the time. This holds in all four categories. The intervals resample whole events, because markets in one event are linked; for example, only one film can win Best Picture.
 
-### Slide 4. Is there a favorite-longshot bias? (1:00)
+### Slide 4. Is there a favorite-longshot bias? (0:40)
 
 On screen: fig4 (calibration slope by month), plus two numbers: slope 1.08 with all prices, 1.00 for prices
 between 2 and 98 cents.
 
-Say: **Next, we test the favorite-longshot bias that Leo introduced.** We summarize calibration with one number: the slope from a logistic regression of the outcome on the price. A slope of one is perfect. A slope above one means long shots are overpriced. Six hours before close, the slope is 1.08, which is a small sign of the bias. However, it comes only from extreme prices, below 2 cents or above 98 cents. Without them, the slope is 1.00. The slope also changes from month to month, between 0.93 and 1.09, and every monthly interval includes one. So the bias is small and not stable.
+Say: **Next, the favorite-longshot bias.** We measure it with a calibration slope from logistic regression, where one is perfect. Six hours before close, the slope is 1.08, a small sign of the bias. But it comes only from prices below 2 cents or above 98 cents. Without them, the slope is 1.00. It also changes from month to month. So the bias is small and not stable.
 
-### Slide 5. Accuracy over time and by category (0:40)
+### Slide 5. Accuracy over time and by category (0:20)
 
 On screen: fig3 (Brier score by horizon, one line per category).
 
-Say: **This figure shows accuracy over time.** We use the Brier score, the average squared error of the price, so lower is better. Accuracy improves as the event gets closer. The score falls from 0.074 one week before close to 0.038 six hours before. Politics improves the most, and Economy remains the hardest category near the close.
+Say: **Accuracy improves as the event gets closer.** The Brier score falls from 0.074 one week before close to 0.038 six hours before. Economy stays the hardest category near the close.
 
-### Slide 6. Can a model beat the price? (1:10)
+### Slide 6. Can a model beat the price? (0:45)
 
 On screen: fig5 (each model's Brier minus the market's, with 95% intervals) and one line: "above zero = worse
 than the market".
 
-Say: **Next, we ask whether a model can beat the price.** We trained two models. The first is logistic regression, which adjusts the price to correct small biases by category and by time. The second is gradient boosting, which combines many small decision trees, where each tree corrects the errors of the previous ones. It uses the price plus 18 other features, such as recent price changes, trading volume, and time to the deadline. We trained on markets that closed before September and tested on September and October. Neither model beats the market price. Most of the boosting model's weight is on the price itself. This matches the previous result: a bias that changes every month cannot be learned.
+Say: **Can a model beat the price?** We tried logistic regression, which corrects the price, and gradient boosting, which combines many decision trees and adds 18 features. We trained on markets before September and tested on September and October. Neither model beats the market price. The boosting model relies almost entirely on the price itself.
 
-### Slide 7. Takeaways, limits, and the final (0:50)
+### Slide 7. Takeaways, limits, and the final (0:30)
 
 On screen: three takeaways, two limits, and one line for the final: "An informed trader is one who beats the
 price, not one who wins a lot."
 
-Say: **To summarize, the market is hard to beat.** Prices are well calibrated in all four categories. The favorite-longshot bias is small and unstable. And our models do not beat the price. We have two limitations. Some markets close early when the event happens, and we have only one test period. For the final project, this gives us a clear definition. An informed trader is not someone who wins often, because buying at 95 cents wins about 95 percent of the time. An informed trader consistently beats the price they paid. Next, Jiahong will show which wallets pay low prices.
+Say: **To summarize, the market is hard to beat.** Prices are well calibrated, the bias is small and unstable, and our models do not beat the price. So for the final, an informed trader is not someone who wins often, but someone who consistently beats the price they paid. Next, Jiahong will show which wallets pay low prices.
 
 ## Backup slides
 
