@@ -16,7 +16,7 @@ everything after it is support. If you run long, cut slide 5 to its bold line.
 | --- | --- | --- | --- |
 | 1 (deck 4) | A price is a probability | none | 0:30 |
 | 2 (deck 5) | Data and how we built the sample | none | 0:35 |
-| 3 (deck 6) | The crowd is well calibrated | fig1, fig2 | 0:30 |
+| 3 (deck 6) | The crowd is well calibrated | fig1, fig2 | 0:40 |
 | 4 (deck 7) | Is there a favorite-longshot bias? | fig4 | 0:40 |
 | 5 (deck 8) | Accuracy over time and by category | fig3 | 0:20 |
 | 6 (deck 9) | Can a model beat the price? | fig5 | 0:45 |
@@ -35,11 +35,11 @@ grade against the outcome.
 
 Say: **Here is our data.** First, we have 7,479 resolved Yes/No markets in politics, technology, entertainment and economy, closing from June to October 2026. Second, we read prices from 4.1 million trades, using the last trade 7 days, 3 days, 24 hours and 6 hours before close. For evaluation, we use calibration curves and Brier scores. Finally, the order book covers 22 percent of these markets, and where both exist, the correlation is 0.92.
 
-### Slide 3. The crowd is well calibrated (0:30)
+### Slide 3. The crowd is well calibrated (0:40)
 
 On screen: fig1 (calibration curve, 24h), then fig2 (one panel per category) as a build.
 
-Say: **This is market calibration, 24 hours before close, across 5,805 markets.** Observed outcomes broadly track market probabilities: events priced near 30 percent resolve Yes about 30 percent of the time. The right panel shows the same pattern in each category. The shaded bands are 95 percent intervals from an event bootstrap.
+Say: **Now to our main result.** On the left, each dot is a group of markets with a similar price one day before close, and its height shows how often those events actually happened. If the market were perfectly calibrated, the dots would sit on the dashed diagonal. And they do: when the market says 30 percent, it happens about 30 percent of the time. On the right, the same pattern holds in all four categories. The shaded band is a 95 percent interval, and we resample whole events, since markets in one event are linked. For example, only one film can win Best Picture.
 
 ### Slide 4. Is there a favorite-longshot bias? (0:40)
 
