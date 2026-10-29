@@ -19,7 +19,7 @@ everything after it is support. If you run long, cut slide 5 to its bold line.
 | 3 | The crowd is well calibrated | fig1, fig2 | 1:00 |
 | 4 | Is there a favorite-longshot bias? | fig4 | 1:15 |
 | 5 | Accuracy over time and by category | fig3 | 0:45 |
-| 6 | Can a model beat the price? | fig5 | 1:15 |
+| 6 | Can a model beat the price? | fig5 | 1:30 |
 | 7 | Takeaways, limits, and the final | none | 1:00 |
 
 ### Slide 1. A price is a probability (0:45)
@@ -46,7 +46,7 @@ Say: **So, is the crowd right? This is the main picture.** We group markets by t
 On screen: fig4 (calibration slope by month), plus two numbers: slope 1.08 with all prices, 1.00 for prices
 between 2 and 98 cents.
 
-Say: **Now, what about that horse-racing bias we introduced earlier?** To check it, we squeeze calibration into one number, the slope. One means perfect. Above one means the market is too timid: long shots are a little too expensive and favorites a little too cheap. Six hours before close we get 1.08, so there is a small trace of the bias. But here's the catch. It comes entirely from the extreme contracts, the ones under 2 cents or over 98 cents. Think of bets like a long-shot candidate winning an election. Take those out, and the slope is exactly 1.00. And month by month, like in this chart, it bounces between 0.93 and 1.09, and every interval includes 1. So the bias is small, and it doesn't stay put.
+Say: **Now, what about that horse-racing bias we introduced earlier?** To check it, we squeeze calibration into one number, the slope. Technically it's the slope from a logistic regression of what happened on the price, but the idea is simple. One means perfect. Above one means the market is too timid: long shots are a little too expensive and favorites a little too cheap. Six hours before close we get 1.08, so there is a small trace of the bias. But here's the catch. It comes entirely from the extreme contracts, the ones under 2 cents or over 98 cents. Think of bets like a long-shot candidate winning an election. Take those out, and the slope is exactly 1.00. And month by month, like in this chart, it bounces between 0.93 and 1.09, and every interval includes 1. So the bias is small, and it doesn't stay put.
 
 ### Slide 5. Accuracy over time and by category (0:45)
 
@@ -54,12 +54,12 @@ On screen: fig3 (Brier score by horizon, one line per category).
 
 Say: **Next, timing.** This is the Brier score, which is basically how far off the price was from what actually happened. Lower is better. And it makes sense: the closer you get to the event, the better the price. A week out it's 0.074, six hours out it's 0.038, roughly half. Think of an election: a week before, there's still a lot that can happen; the night before, most of the information is already out. Politics improves the most, and economy stays the hardest to call.
 
-### Slide 6. Can a model beat the price? (1:15)
+### Slide 6. Can a model beat the price? (1:30)
 
 On screen: fig5 (each model's Brier minus the market's, with 95% intervals) and one line: "above zero = worse
 than the market".
 
-Say: **So the price is pretty good. Can AI beat it?** We tried two models. The first one takes the price and tries to correct it a little, by category and by how far we are from the close. The second is gradient boosting, with the price plus 18 other things you'd know at that moment, like how the price moved over the last day, trading volume, how many people are trading, and how long until the deadline. To keep it fair, we trained on everything that finished before September and tested on September and October, so the model never sees the future. And the answer: neither one beats the raw price. The simple correction actually does slightly worse. When we look inside the boosting model, it leans almost entirely on the price itself. That ties back to the bias slide: if the bias keeps changing month to month, you can't learn it in the summer and use it in the fall.
+Say: **So the price is pretty good. Can AI beat it?** We tried two models. The first is logistic regression, the standard tool for predicting a yes-or-no outcome: it turns inputs into a probability between 0 and 1. We give it the market price, so it learns small corrections, like "when the market says 10 percent, it's really 8," and it can correct differently by category and by how far we are from the close. The second is gradient boosting. It builds a few hundred small decision trees one after another, and each new tree focuses on the mistakes the earlier ones made. Think of a team of analysts where each one fixes what the last one got wrong. That lets it pick up patterns a straight line would miss. We gave it the price plus 18 other things you'd know at that moment, like how the price moved over the last day, trading volume, how many people are trading, and how long until the deadline. To keep it fair, we trained on everything that finished before September and tested on September and October, so the model never sees the future. And the answer: neither one beats the raw price. The simple correction actually does slightly worse. When we look inside the boosting model, it leans almost entirely on the price itself. That ties back to the bias slide: if the bias keeps changing month to month, you can't learn it in the summer and use it in the fall.
 
 ### Slide 7. Takeaways, limits, and the final (1:00)
 
