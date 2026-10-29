@@ -23,7 +23,7 @@ UCLA STATS C161/C261, Fall 2026. Group project on Polymarket data.
 
 Current deck (restyled, with speaker notes and numbers checked against `reports/tables/` and
 `wallet_analysis/tables/`): `reports/midterm/Can AI Beat the Crowd (Group 2).pptx`. Speaking time in the notes:
-Leo 1:45, Aaron 7:00, Jiahong about 3:15, about 12 minutes plus Q&A.
+Leo 1:45, Aaron about 6:00, Jiahong about 3:15, about 11 minutes plus Q&A.
 Updated final one: https://docs.google.com/presentation/d/1mhefGXs_uBae8s3EDT-5NbbZ7eYvhiy1ccq0EI4lYjo/edit?slide=id.p1#slide=id.p1
 Link (OG): https://docs.google.com/presentation/d/1qHHuWODgGaomUR0FSCAc41gyB_jCFLpouVySHfoDP7c/edit?usp=sharing
 Minimalist: https://docs.google.com/presentation/d/1bD7OsUIcodmiyJ6YB9EMe6NGaTwEqOoiJgNulADcvpU/edit?slide=id.p1#slide=id.p1
