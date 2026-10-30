@@ -1,6 +1,6 @@
 # data
 
-The catalog, the hourly book and the two lecture CSVs are committed (the repo is private).
+The catalog, the hourly book and the two lecture CSVs are committed.
 The raw wallet trades are too big for GitHub; run `scripts/download_wallet_trades.py` or ask Aaron for a copy.
 
 ```

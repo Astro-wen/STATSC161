@@ -74,8 +74,8 @@ hard to beat overall; the wallet part shows which wallets pay low prices, i.e. b
    copy logic into a notebook cell.
 3. **Never commit `.env`** (database password) or `data/raw/wallet_trades/` (3.1 GB, too big for GitHub).
    Both are in `.gitignore`.
-4. **The repo is private** because the course data is class-only. Keep it that way, and do not try to
-   identify anyone behind a wallet (course rule).
+4. **The repo is public** (the course asks for data and code in public view). Never commit the
+   database password, and do not try to identify anyone behind a wallet (course rule).
 5. Commit as yourself; keep commit messages short and plain.
 
 ## Commands

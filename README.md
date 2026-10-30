@@ -11,7 +11,7 @@ pip install -r requirements.txt
 cp .env.example .env      # then put the password from Bruin Learn in it
 ```
 
-Don't commit `.env`. The repo is private because the data is course-only; please keep it that way.
+Don't commit `.env`. The repo is public so the class can see the data and code, as the course asks.
 
 ## Getting the data
 
